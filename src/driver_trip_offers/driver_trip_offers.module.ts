@@ -8,6 +8,6 @@ import { DriverTripOffersController } from './driver_trip_offers.controller';
   imports: [TypeOrmModule.forFeature([DriverTripOffers])],
   providers: [DriverTripOffersService],
   controllers: [DriverTripOffersController],
-  exports: [DriverTripOffersService],
+  exports: [DriverTripOffersService], // <-- IMPORTANTE
 })
 export class DriverTripOffersModule {}
