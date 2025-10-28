@@ -14,12 +14,14 @@ export class DriverTripOffersService {
 
   async create(driverTripOffer: CreateDriverTripOffersDto) {
     const newData = this.driverTripOffersRepository.create(driverTripOffer);
-    return this.driverTripOffersRepository.save(newData);
+    return await this.driverTripOffersRepository.save(newData);
   }
 
   async findByClientRequest(id_client_request: number) {
-    return this.driverTripOffersRepository.find({
+    return await this.driverTripOffersRepository.find({
       where: { id_client_request },
+      relations: ['clientRequests', 'driver'], // opcional
     });
   }
 }
+
