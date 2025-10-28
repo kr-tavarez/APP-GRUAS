@@ -14,7 +14,7 @@ export class DriverTripOffersService {
 
   async create(driverTripOffer: CreateDriverTripOffersDto) {
     const newData = this.driverTripOffersRepository.create(driverTripOffer);
-    return await this.driverTripOffersRepository.save(newData);
+    return this.driverTripOffersRepository.save(newData);
   }
 
   async findByClientRequest(id_client_request: number) {
