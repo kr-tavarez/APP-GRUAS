@@ -18,9 +18,8 @@ export class DriverTripOffersService {
   }
 
   async findByClientRequest(id_client_request: number) {
-    return await this.driverTripOffersRepository.find({
+    return this.driverTripOffersRepository.find({
       where: { id_client_request },
     });
   }
 }
-
