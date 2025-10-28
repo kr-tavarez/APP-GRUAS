@@ -17,7 +17,6 @@ export class DriverTripOffersService {
     return await this.driverTripOffersRepository.save(newData);
   }
 
-  // ✅ Método que faltaba
   async findByClientRequest(id_client_request: number) {
     return await this.driverTripOffersRepository.find({
       where: { id_client_request },
