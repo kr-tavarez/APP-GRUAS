@@ -3,18 +3,15 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    cors: true, // <-- Habilita CORS (obligatorio para frontend / app móvil)
+  });
 
-  // ✅ validar DTOs globalmente
   app.useGlobalPipes(new ValidationPipe({ forbidUnknownValues: false }));
 
-  // ✅ permitir CORS para apps móviles / frontend
-  app.enableCors();
-
-  // ✅ IMPORTANTE PARA RAILWAY: escuchar el puerto dinámico y en 0.0.0.0
   const port = process.env.PORT || 3000;
-  await app.listen(port, '0.0.0.0');
+  await app.listen(port, '0.0.0.0'); // <-- IMPORTANTE PARA RAILWAY
 
-  console.log(`🚀 Backend running on port ${port}`);
+  console.log(`🚀 Backend on Railway listening on port ${port}`);
 }
 bootstrap();
