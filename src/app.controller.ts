@@ -4,10 +4,11 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
 
   @Get()
-  home() {
+  status() {
     return {
       status: 'running',
-      message: 'Backend GruApp activo 🚀'
+      message: 'Backend Gruas App activo 🚀',
+      time: new Date().toISOString()
     };
   }
 }
