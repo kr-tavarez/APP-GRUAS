@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { RolesModule } from './roles/roles.module';
@@ -11,7 +12,6 @@ import { ClientRequestsModule } from './client_requests/client_requests.module';
 import { TimeAndDistanceValuesModule } from './time_and_distance_values/time_and_distance_values.module';
 import { DriverTripOffersModule } from './driver_trip_offers/driver_trip_offers.module';
 import { DriverCarInfoModule } from './driver_car_info/driver_car_info.module';
-import { ConfigModule } from '@nestjs/config';
 import { FirebaseModule } from './firebase/firebase.module';
 
 @Module({
@@ -20,12 +20,10 @@ import { FirebaseModule } from './firebase/firebase.module';
 
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL, // <-- Desde Railway
+      url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      ssl: process.env.DATABASE_URL.includes("railway") ? { rejectUnauthorized: false } : false,
     }),
 
     UsersModule,
@@ -40,6 +38,6 @@ import { FirebaseModule } from './firebase/firebase.module';
     FirebaseModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
