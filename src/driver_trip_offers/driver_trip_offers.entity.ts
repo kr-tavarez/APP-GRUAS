@@ -24,12 +24,12 @@ export class DriverTripOffers {
     @Column('decimal', {precision: 10, scale: 2})
     distance: number;
 
-    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
     
-    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     updated_at: Date;
-    
+
     @ManyToOne(() => User, (user) => user.id)
     @JoinColumn({ name: 'id_driver' })
     driver: User;
@@ -40,7 +40,4 @@ export class DriverTripOffers {
     })
     @JoinColumn({ name: 'id_client_request' })
     clientRequests: ClientRequests;
-
-    
-
 }
