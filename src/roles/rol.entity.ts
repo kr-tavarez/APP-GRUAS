@@ -8,18 +8,18 @@ export class Rol {
     id: string;
 
     @Column({ unique: true })
-    name: string
+    name: string;
     
     @Column()
-    image: string
+    image: string;
 
     @Column()
-    route: string
+    route: string;
 
-    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
     
-    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     updated_at: Date;
 
     @ManyToMany(() => User, (user) => user.roles)
