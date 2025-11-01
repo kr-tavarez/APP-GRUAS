@@ -6,7 +6,6 @@ import { ClientRequests } from 'src/client_requests/client_requests.entity';
 import { DriverTripOffers } from 'src/driver_trip_offers/driver_trip_offers.entity';
 import { DriverCarInfo } from 'src/driver_car_info/driver_car_info.entity';
 
-
 @Entity({ name: 'users' })
 export class User {
 
@@ -34,10 +33,10 @@ export class User {
     @Column({ nullable: true })
     notification_token: string;
     
-    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
     
-    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     updated_at: Date;
 
     @JoinTable({
@@ -67,7 +66,6 @@ export class User {
     @OneToMany(() => DriverCarInfo, driverCarInfo => driverCarInfo.id_driver)
     driverCarInfo: DriverCarInfo;
     
-   
     @BeforeInsert()
     async hashPassword() {
         this.password = await hash(this.password, Number(process.env.HASH_SALT));
